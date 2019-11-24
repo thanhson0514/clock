@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="main">
+        <div id="box">
+            <form action="" id="boxTime">
+                <label>Hour:</label>
+                <input id="hours" type="number" max="23" min="0">
+                <label>Minutes</label>
+                <input id="minutes" type="number" max="60" min="0">
+                <label>Seconds:</label>
+                <input id="seconds" type="number" max="60" min="0">
+                <button id="addTimeAlert">OK</button>
+            </form>
+        </div>
+        <div id="show"></div>
+    </div>
+    <div id="clock">
+        15:43
+    </div>
+    <audio id="audio" src="../sounds/hello.mp3"></audio>
+    <script src="main.js"></script>
+</body>
+
+</html>
