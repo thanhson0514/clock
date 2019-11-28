@@ -1,50 +1,129 @@
-let count = 0
-let saveTime = []
-document.querySelector('#boxTime').addEventListener('submit', (e) => {
-    e.preventDefault()
-        // get value time from input 
-    const hour = document.querySelector('#hours').value
-    const minutes = document.querySelector('#minutes').value
-    const seconds = document.querySelector('#seconds').value
+const clock = () => {
+    const time = new Date()
 
-    // save time array
-    const save = `${hour.toString().padStart(2,0)}:${minutes.toString().padStart(2,0)}:${seconds.toString().padStart(2,0)}`
-    saveTime.push(String(save.split(':')))
+    // get hours, minutes, seconds
+    const hours = time.getHours()
+    const minutes = time.getMinutes()
+    const seconds = time.getSeconds()
 
-    const div = document.createElement('div')
-    const h2 = document.createElement('h2')
+    // get days, months, years
+    const days = time.getDay()
+    const dates = time.getDate()
+    const months = time.getMonth()
+    const years = time.getFullYear()
 
-    h2.textContent = `Alert: ${save}`
+    document.querySelector('#hrs-mins').innerHTML = `${hours.toString().padStart(2,0)}:${minutes.toString().padStart(2,0)}`
+    document.querySelector('#secs').innerHTML = `${seconds.toString().padStart(2,0)}`
 
-    document
-        .querySelector('#show')
-        .appendChild(h2)
-    console.log(saveTime)
-    showTime(saveTime)
-})
-
-console.log(saveTime)
-showTime(saveTime)
-
-function showTime(saveTime) {
-    setInterval(() => {
-
-        let date = new Date()
-
-        // setup time
-        let hours = date.getHours()
-        let minutes = date.getMinutes()
-        let seconds = date.getSeconds()
-
-        let displayTime = `${hours.toString().padStart(2,0)}:${minutes.toString().padStart(2,0)}:${seconds.toString().padStart(2,0)}`
-
-        document.querySelector('#clock').innerHTML = displayTime
-
-        saveTime.forEach((e) => {
-            if (e === String(displayTime.split(':'))) {
-                document.querySelector('#audio').play()
-                alert('Dậy !!!')
+    // setup day
+    let showDay = ''
+    switch (days) {
+        case 0:
+            {
+                showDay = 'Sun'
+                break
             }
-        })
-    }, 1000)
+        case 1:
+            {
+                showDay = 'Mon'
+                break
+            }
+        case 2:
+            {
+                showDay = 'Tue'
+                break
+            }
+        case 3:
+            {
+                showDay = 'Wed'
+                break
+            }
+        case 4:
+            {
+                showDay = 'Thu'
+                break
+            }
+        case 5:
+            {
+                showDay = 'Fri'
+                break
+            }
+        case 6:
+            {
+                showDay = 'Sat'
+                break
+            }
+    }
+
+    // setup month
+    let showMonth = ''
+    switch (months) {
+        case 0:
+            {
+                showMonth = 'Jan'
+                break
+            }
+        case 1:
+            {
+                showMonth = 'Feb'
+                break
+            }
+        case 2:
+            {
+                showMonth = 'Mar'
+                break
+            }
+        case 3:
+            {
+                showMonth = 'Apr'
+                break
+            }
+        case 4:
+            {
+                showMonth = 'May'
+                break
+            }
+        case 5:
+            {
+                showMonth = 'Jun'
+                break
+            }
+        case 6:
+            {
+                showMonth = 'Jul'
+                break
+            }
+        case 7:
+            {
+                showMonth = 'Aug'
+                break
+            }
+        case 8:
+            {
+                showMonth = 'Sep'
+                break
+            }
+        case 9:
+            {
+                showMonth = 'Oct'
+                break
+            }
+        case 10:
+            {
+                showMonth = 'Nov'
+                break
+            }
+        case 11:
+            {
+                showMonth = 'Dec'
+                break
+            }
+    }
+
+    // show screen 
+    document.querySelector('#day-paragraph').innerHTML = `${showDay} ${dates} ${showMonth} ${years}`
+
 }
+
+
+setInterval(clock, 1000)
